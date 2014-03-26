@@ -352,7 +352,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 		this.previousMonthButton.setText("<");
 		this.previousMonthButton
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						previousMonthActionPerformed(evt);
 					}
@@ -360,8 +360,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 
 		this.nextMonthButton.setText(">");
 		this.nextMonthButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+				.addActionListener(new java.awt.event.ActionListener() {					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						nextMonthActionPerformed(evt);
 					}
@@ -379,7 +378,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 		{
 			final Worker input = i;
 			this.popup.add(new JMenuItem(input.getName())).addActionListener(new java.awt.event.ActionListener() {
-				@Override
+				
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
 					editCell(input);
 				}
@@ -396,7 +395,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 		this.saveChanges.setText("Save Changes");
 		this.saveChanges.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				saveChangesActionPerformed(evt);
 			}
@@ -408,7 +407,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 		this.undoChanges.setText("Undo Changes");
 		this.undoChanges.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				undoChangesActionPerformed(evt);
 			}
@@ -424,7 +423,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 		this.editWorkers.setText("Edit Workers");
 		this.editWorkers.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				editWorkersActionPerformed(evt);
 			}
@@ -436,7 +435,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 		this.editDays.setText("Edit Days");
 		this.editDays.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				editDaysActionPerformed(evt);
 			}
@@ -452,7 +451,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 		this.genHtml.setText("Generate Web Page");
 		this.genHtml.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				genHtmlActionPerformed(evt);
 			}
@@ -465,7 +464,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 		this.generateText.setText("Generate Text");
 		this.generateText
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						generateTextActionPerformed(evt);
 					}

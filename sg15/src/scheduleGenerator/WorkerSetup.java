@@ -264,7 +264,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 
 		this.addButton.setText("Add Worker");
 		this.addButton.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addButtonActionPerformed(evt);
 			}
@@ -273,7 +273,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 		this.removeButton.setText("Remove Worker");
 		this.removeButton
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						removeButtonActionPerformed(evt);
 					}
@@ -281,7 +281,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 
 		this.nextButton.setText("Next");
 		this.nextButton.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nextButtonActionPerformed(evt);
 			}
@@ -289,7 +289,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 
 		this.backButton.setText("Back");
 		this.backButton.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				backButtonActionPerformed(evt);
 			}

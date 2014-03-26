@@ -38,6 +38,9 @@ import javax.swing.JTextField;
  *  * To fix this issue you would move parts of this class to its 
  * own classes such as the tabs that are created for each weekday and 
  * then just created a new day tab and then all the code will be in the same spot
+ * 
+ * SWAP 2, TEAM: 04
+ * Created a DayPanel class which allows fo the code to be placed inside and easily changed.
  */
 /**
  * 
@@ -127,7 +130,7 @@ public class Config extends javax.swing.JFrame {
 		initComponents();
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initDyn() {
 		this.sundayScrollPane = new javax.swing.JScrollPane();
 		this.sundayScrollPane.setPreferredSize(new Dimension(185, 150));
@@ -185,13 +188,13 @@ public class Config extends javax.swing.JFrame {
 		this.saturdayAddJob = new javax.swing.JButton();
 		this.saturdayDeleteJob = new javax.swing.JButton();
 
-		this.mondayTab = new javax.swing.JPanel();
-		this.tuesdayTab = new javax.swing.JPanel();
-		this.wednesdayTab = new javax.swing.JPanel();
-		this.thursdayTab = new javax.swing.JPanel();
-		this.fridayTab = new javax.swing.JPanel();
-		this.saturdayTab = new javax.swing.JPanel();
-		this.sundayTab = new javax.swing.JPanel();
+		this.mondayTab = new DayPanel();
+		this.tuesdayTab = new DayPanel();
+		this.wednesdayTab = new DayPanel();
+		this.thursdayTab = new DayPanel();
+		this.fridayTab = new DayPanel();
+		this.saturdayTab = new DayPanel();
+		this.sundayTab = new DayPanel();
 	}
 
 	private void initComponents() {
@@ -216,7 +219,7 @@ public class Config extends javax.swing.JFrame {
 		this.sundayCheck.setText("Sunday");
 		this.sundayCheck.setName("sundayCheck"); // NOI18N
 		this.sundayCheck.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				sundayCheckActionPerformed(evt);
 			}
@@ -226,7 +229,7 @@ public class Config extends javax.swing.JFrame {
 		this.wednesdayCheck.setName("wednesdayCheck"); // NOI18N
 		this.wednesdayCheck
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						wednesdayCheckActionPerformed(evt);
 					}
@@ -235,7 +238,7 @@ public class Config extends javax.swing.JFrame {
 		this.mondayCheck.setText("Monday");
 		this.mondayCheck.setName("mondayCheck"); // NOI18N
 		this.mondayCheck.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				mondayCheckActionPerformed(evt);
 			}
@@ -245,7 +248,7 @@ public class Config extends javax.swing.JFrame {
 		this.tuesdayCheck.setName("tuesdayCheck"); // NOI18N
 		this.tuesdayCheck
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						tuesdayCheckActionPerformed(evt);
 					}
@@ -258,7 +261,7 @@ public class Config extends javax.swing.JFrame {
 		this.thursdayCheck.setName("thursdayCheck"); // NOI18N
 		this.thursdayCheck
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						thursdayCheckActionPerformed(evt);
 					}
@@ -267,7 +270,7 @@ public class Config extends javax.swing.JFrame {
 		this.fridayCheck.setText("Friday");
 		this.fridayCheck.setName("fridayCheck"); // NOI18N
 		this.fridayCheck.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				fridayCheckActionPerformed(evt);
 			}
@@ -277,7 +280,7 @@ public class Config extends javax.swing.JFrame {
 		this.saturdayCheck.setName("saturdayCheck"); // NOI18N
 		this.saturdayCheck
 				.addActionListener(new java.awt.event.ActionListener() {
-					@Override
+					
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						saturdayCheckActionPerformed(evt);
 					}
@@ -285,7 +288,7 @@ public class Config extends javax.swing.JFrame {
 
 		this.nextButton.setText("Next");
 		this.nextButton.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nextButtonActionPerformed(evt);
 			}
@@ -458,47 +461,6 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[0] = new DefaultListModel<Object>();
-			this.sundayJobList.setModel(this.models[0]);
-			this.sundayScrollPane.setViewportView(this.sundayJobList);
-
-			this.sundayJobName.setColumns(20);
-
-			this.sundayLabel.setText("Job Name:");
-
-			this.sundayAddJob.setText("Add Job");
-			this.sundayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.sundayJobName.getText().isEmpty()) {
-								Config.this.models[0]
-										.addElement(Config.this.sundayJobName
-												.getText());
-								Config.this.sundayJobList
-										.setModel(Config.this.models[0]);
-								Config.this.sundayJobName.setText("");
-							}
-						}
-					});
-
-			this.sundayDeleteJob.setText("Delete Job");
-			this.sundayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.sundayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.sundayJobList
-										.getSelectedIndex();
-								Config.this.models[0].remove(n);
-							}
-
-						}
-					});
-
 			// SWAP, 1 TEAM: 03
 			//
 			// QUALITY CHANGES
@@ -506,21 +468,15 @@ public class Config extends javax.swing.JFrame {
 			// Moved the duplicate code into a method for setting the Horizontal
 			// and vertical tab groups
 			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout sundayTabLayout = new javax.swing.GroupLayout(
-					this.sundayTab);
-			this.sundayTab.setLayout(sundayTabLayout);
-			setTabVerticalGroup(sundayTabLayout, sundayJobName, sundayLabel,
-					sundayAddJob, sundayDeleteJob, sundayScrollPane);
-			setTabHorizontalGroup(sundayTabLayout, sundayJobName, sundayLabel,
-					sundayAddJob, sundayDeleteJob, sundayScrollPane);
 
+			sundayTab.DayPanelSet(models, this, sundayJobList, sundayJobName, sundayLabel, sundayAddJob, sundayDeleteJob, sundayScrollPane);
+			sundayTab.setUp(0);
 			this.dayTabs.addTab("Sunday", this.sundayTab);
 		} else {
 			this.numSelected--;
 			stretch();
 			this.dayTabs.remove(this.sundayTab);
 		}
-
 	}
 
 	/**
@@ -533,62 +489,8 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[1] = new DefaultListModel<Object>();
-			this.mondayJobList.setModel(this.models[1]);
-			this.mondayScrollPane.setViewportView(this.mondayJobList);
-
-			this.mondayJobName.setColumns(20);
-
-			this.mondayLabel.setText("Job Name:");
-
-			this.mondayAddJob.setText("Add Job");
-			this.mondayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.mondayJobName.getText().isEmpty()) {
-								Config.this.models[1]
-										.addElement(Config.this.mondayJobName
-												.getText());
-								Config.this.mondayJobList
-										.setModel(Config.this.models[1]);
-								Config.this.mondayJobName.setText("");
-							}
-						}
-					});
-
-			this.mondayDeleteJob.setText("Delete Job");
-			this.mondayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.mondayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.mondayJobList
-										.getSelectedIndex();
-								Config.this.models[1].remove(n);
-							}
-
-						}
-					});
-
-			// SWAP, 1 TEAM: 03
-			//
-			// QUALITY CHANGES
-			//
-			// Moved the duplicate code into a method for setting the Horizontal
-			// and vertical tab groups
-			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout mondayTabLayout = new javax.swing.GroupLayout(
-					this.mondayTab);
-			this.mondayTab.setLayout(mondayTabLayout);
-			setTabVerticalGroup(mondayTabLayout, mondayJobName, mondayLabel,
-					mondayAddJob, mondayDeleteJob, mondayScrollPane);
-			setTabHorizontalGroup(mondayTabLayout, mondayJobName, mondayLabel,
-					mondayAddJob, mondayDeleteJob, mondayScrollPane);
-
+			mondayTab.DayPanelSet(models, this, mondayJobList, mondayJobName, mondayLabel, mondayAddJob, mondayDeleteJob, mondayScrollPane);
+			mondayTab.setUp(1);
 			this.dayTabs.addTab("Monday", this.mondayTab);
 		} else {
 			this.numSelected--;
@@ -608,63 +510,9 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[2] = new DefaultListModel<Object>();
-			this.tuesdayJobList.setModel(this.models[2]);
-			this.tuesdayScrollPane.setViewportView(this.tuesdayJobList);
-
-			this.tuesdayJobName.setColumns(20);
-
-			this.tuesdayLabel.setText("Job Name:");
-
-			this.tuesdayAddJob.setText("Add Job");
-			this.tuesdayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.tuesdayJobName.getText().isEmpty()) {
-								Config.this.models[2]
-										.addElement(Config.this.tuesdayJobName
-												.getText());
-								Config.this.tuesdayJobList
-										.setModel(Config.this.models[2]);
-								Config.this.tuesdayJobName.setText("");
-							}
-						}
-					});
-
-			this.tuesdayDeleteJob.setText("Delete Job");
-			this.tuesdayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.tuesdayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.tuesdayJobList
-										.getSelectedIndex();
-								Config.this.models[2].remove(n);
-							}
-
-						}
-					});
-
-			// SWAP, 1 TEAM: 03
-			//
-			// QUALITY CHANGES
-			//
-			// Moved the duplicate code into a method for setting the Horizontal
-			// and vertical tab groups
-			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout tuesdayTabLayout = new javax.swing.GroupLayout(
-					this.tuesdayTab);
-			this.tuesdayTab.setLayout(tuesdayTabLayout);
-			setTabVerticalGroup(tuesdayTabLayout, tuesdayJobName, tuesdayLabel,
-					tuesdayAddJob, tuesdayDeleteJob, tuesdayScrollPane);
-			setTabHorizontalGroup(tuesdayTabLayout, tuesdayJobName,
-					tuesdayLabel, tuesdayAddJob, tuesdayDeleteJob,
-					tuesdayScrollPane);
-
+			
+			tuesdayTab.DayPanelSet(models, this, tuesdayJobList, tuesdayJobName, tuesdayLabel, tuesdayAddJob, tuesdayDeleteJob, tuesdayScrollPane);
+			tuesdayTab.setUp(2);
 			this.dayTabs.addTab("Tuesday", this.tuesdayTab);
 		} else {
 			this.numSelected--;
@@ -683,64 +531,8 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[3] = new DefaultListModel<Object>();
-			this.wednesdayJobList.setModel(this.models[3]);
-			this.wednesdayScrollPane.setViewportView(this.wednesdayJobList);
-
-			this.wednesdayJobName.setColumns(20);
-
-			this.wednesdayLabel.setText("Job Name:");
-
-			this.wednesdayAddJob.setText("Add Job");
-			this.wednesdayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.wednesdayJobName.getText()
-									.isEmpty()) {
-								Config.this.models[3]
-										.addElement(Config.this.wednesdayJobName
-												.getText());
-								Config.this.wednesdayJobList
-										.setModel(Config.this.models[3]);
-								Config.this.wednesdayJobName.setText("");
-							}
-						}
-					});
-
-			this.wednesdayDeleteJob.setText("Delete Job");
-			this.wednesdayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.wednesdayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.wednesdayJobList
-										.getSelectedIndex();
-								Config.this.models[3].remove(n);
-							}
-
-						}
-					});
-
-			// SWAP, 1 TEAM: 03
-			//
-			// QUALITY CHANGES
-			//
-			// Moved the duplicate code into a method for setting the Horizontal
-			// and vertical tab groups
-			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout wednesdayTabLayout = new javax.swing.GroupLayout(
-					this.wednesdayTab);
-			this.wednesdayTab.setLayout(wednesdayTabLayout);
-			setTabVerticalGroup(wednesdayTabLayout, wednesdayJobName,
-					wednesdayLabel, wednesdayAddJob, wednesdayDeleteJob,
-					wednesdayScrollPane);
-			setTabHorizontalGroup(wednesdayTabLayout, wednesdayJobName,
-					wednesdayLabel, wednesdayAddJob, wednesdayDeleteJob,
-					wednesdayScrollPane);
+			wednesdayTab.DayPanelSet(models, this, wednesdayJobList, wednesdayJobName, wednesdayLabel, wednesdayAddJob, wednesdayDeleteJob, wednesdayScrollPane);
+			wednesdayTab.setUp(3);
 
 			this.dayTabs.addTab("Wednesday", this.wednesdayTab);
 		} else {
@@ -761,64 +553,9 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[4] = new DefaultListModel<Object>();
-			this.thursdayJobList.setModel(this.models[4]);
-			this.thursdayScrollPane.setViewportView(this.thursdayJobList);
-
-			this.thursdayJobName.setColumns(20);
-
-			this.thursdayLabel.setText("Job Name:");
-
-			this.thursdayAddJob.setText("Add Job");
-			this.thursdayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.thursdayJobName.getText()
-									.isEmpty()) {
-								Config.this.models[4]
-										.addElement(Config.this.thursdayJobName
-												.getText());
-								Config.this.thursdayJobList
-										.setModel(Config.this.models[4]);
-								Config.this.thursdayJobName.setText("");
-							}
-						}
-					});
-
-			this.thursdayDeleteJob.setText("Delete Job");
-			this.thursdayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.thursdayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.thursdayJobList
-										.getSelectedIndex();
-								Config.this.models[4].remove(n);
-							}
-
-						}
-					});
-
-			// SWAP, 1 TEAM: 03
-			//
-			// QUALITY CHANGES
-			//
-			// Moved the duplicate code into a method for setting the Horizontal
-			// and vertical tab groups
-			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout thursdayTabLayout = new javax.swing.GroupLayout(
-					this.thursdayTab);
-			this.thursdayTab.setLayout(thursdayTabLayout);
-			setTabVerticalGroup(thursdayTabLayout, thursdayJobName,
-					thursdayLabel, thursdayAddJob, thursdayDeleteJob,
-					thursdayScrollPane);
-			setTabHorizontalGroup(thursdayTabLayout, thursdayJobName,
-					thursdayLabel, thursdayAddJob, thursdayDeleteJob,
-					thursdayScrollPane);
+			
+			thursdayTab.DayPanelSet(models, this, thursdayJobList, thursdayJobName, thursdayLabel, thursdayAddJob, thursdayDeleteJob, thursdayScrollPane);
+			thursdayTab.setUp(4);
 
 			this.dayTabs.addTab("Thursday", this.thursdayTab);
 		} else {
@@ -839,62 +576,9 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[5] = new DefaultListModel<Object>();
-			this.fridayJobList.setModel(this.models[5]);
-			this.fridayScrollPane.setViewportView(this.fridayJobList);
-
-			this.fridayJobName.setColumns(20);
-
-			this.fridayLabel.setText("Job Name:");
-
-			this.fridayAddJob.setText("Add Job");
-			this.fridayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.fridayJobName.getText().isEmpty()) {
-								Config.this.models[5]
-										.addElement(Config.this.fridayJobName
-												.getText());
-								Config.this.fridayJobList
-										.setModel(Config.this.models[5]);
-								Config.this.fridayJobName.setText("");
-							}
-						}
-					});
-
-			this.fridayDeleteJob.setText("Delete Job");
-			this.fridayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.fridayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.fridayJobList
-										.getSelectedIndex();
-								Config.this.models[5].remove(n);
-							}
-
-						}
-					});
-
-			// SWAP, 1 TEAM: 03
-			//
-			// QUALITY CHANGES
-			//
-			// Moved the duplicate code into a method for setting the Horizontal
-			// and vertical tab groups
-			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout fridayTabLayout = new javax.swing.GroupLayout(
-					this.fridayTab);
-			this.fridayTab.setLayout(fridayTabLayout);
-			setTabVerticalGroup(fridayTabLayout, fridayJobName, fridayLabel,
-					fridayAddJob, fridayDeleteJob, fridayScrollPane);
-			setTabHorizontalGroup(fridayTabLayout, fridayJobName, fridayLabel,
-					fridayAddJob, fridayDeleteJob, fridayScrollPane);
-
+			
+			fridayTab.DayPanelSet(models, this, fridayJobList, fridayJobName, fridayLabel, fridayAddJob, fridayDeleteJob, fridayScrollPane);
+			fridayTab.setUp(5);
 			this.dayTabs.addTab("Friday", this.fridayTab);
 		} else {
 			this.numSelected--;
@@ -914,64 +598,8 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[6] = new DefaultListModel<Object>();
-			this.saturdayJobList.setModel(this.models[6]);
-			this.saturdayScrollPane.setViewportView(this.saturdayJobList);
-
-			this.saturdayJobName.setColumns(20);
-
-			this.saturdayLabel.setText("Job Name:");
-
-			this.saturdayAddJob.setText("Add Job");
-			this.saturdayAddJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							if (!Config.this.saturdayJobName.getText()
-									.isEmpty()) {
-								Config.this.models[6]
-										.addElement(Config.this.saturdayJobName
-												.getText());
-								Config.this.saturdayJobList
-										.setModel(Config.this.models[6]);
-								Config.this.saturdayJobName.setText("");
-							}
-						}
-					});
-
-			this.saturdayDeleteJob.setText("Delete Job");
-			this.saturdayDeleteJob
-					.addActionListener(new java.awt.event.ActionListener() {
-						@Override
-						public void actionPerformed(
-								java.awt.event.ActionEvent evt) {
-							while (!Config.this.saturdayJobList
-									.isSelectionEmpty()) {
-								int n = Config.this.saturdayJobList
-										.getSelectedIndex();
-								Config.this.models[6].remove(n);
-							}
-
-						}
-					});
-
-			// SWAP, 1 TEAM: 03
-			//
-			// QUALITY CHANGES
-			//
-			// Moved the duplicate code into a method for setting the Horizontal
-			// and vertical tab groups
-			// This overcame the duplicated code Bad code smell
-			javax.swing.GroupLayout saturdayTabLayout = new javax.swing.GroupLayout(
-					this.saturdayTab);
-			this.saturdayTab.setLayout(saturdayTabLayout);
-			setTabVerticalGroup(saturdayTabLayout, saturdayJobName,
-					saturdayLabel, saturdayAddJob, saturdayDeleteJob,
-					saturdayScrollPane);
-			setTabHorizontalGroup(saturdayTabLayout, saturdayJobName,
-					saturdayLabel, saturdayAddJob, saturdayDeleteJob,
-					saturdayScrollPane);
+			saturdayTab.DayPanelSet(models, this, saturdayJobList, saturdayJobName, saturdayLabel, saturdayAddJob, saturdayDeleteJob, saturdayScrollPane);
+			saturdayTab.setUp(6);
 
 			this.dayTabs.addTab("Saturday", this.saturdayTab);
 		} else {
@@ -981,120 +609,7 @@ public class Config extends javax.swing.JFrame {
 		}
 	}
 
-	// SWAP, 1 TEAM: 03
-	//
-	// QUALITY CHANGES
-	//
-	// Moved the duplicate code for setting the vertical tab group into this
-	// method
-	// This overcame the duplicated code Bad code smell
-	private void setTabVerticalGroup(GroupLayout dayTabLayout,
-			JTextField dayjobName, JLabel dayLabel, JButton dayAddJob,
-			JButton dayDeleteJob, JScrollPane dayScrollPane) {
-		dayTabLayout
-				.setVerticalGroup(dayTabLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								dayTabLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												dayTabLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING,
-																false)
-														.addGroup(
-																dayTabLayout
-																		.createSequentialGroup()
-																		.addGroup(
-																				dayTabLayout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.BASELINE)
-																						.addComponent(
-																								dayjobName,
-																								javax.swing.GroupLayout.PREFERRED_SIZE,
-																								javax.swing.GroupLayout.DEFAULT_SIZE,
-																								javax.swing.GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								dayLabel))
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(
-																				dayAddJob)
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				dayDeleteJob))
-														.addComponent(
-																dayScrollPane,
-																javax.swing.GroupLayout.PREFERRED_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(25, Short.MAX_VALUE)));
-	}
-
-	// SWAP, 1 TEAM: 03
-	//
-	// QUALITY CHANGES
-	//
-	// Moved the duplicate code for setting the horizontal tab group into this
-	// method
-	// This overcame the duplicated code Bad code smell
-	private void setTabHorizontalGroup(GroupLayout dayTabLayout,
-			JTextField dayjobName, JLabel dayLabel, JButton dayAddJob,
-			JButton dayDeleteJob, JScrollPane dayScrollPane) {
-		dayTabLayout
-				.setHorizontalGroup(dayTabLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								dayTabLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(
-												dayScrollPane,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												182,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addGroup(
-												dayTabLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addGroup(
-																dayTabLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				dayLabel)
-																		.addGroup(
-																				dayTabLayout
-																						.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.LEADING)
-																						.addGroup(
-																								dayTabLayout
-																										.createSequentialGroup()
-																										.addGap(14,
-																												14,
-																												14)
-																										.addComponent(
-																												dayAddJob))
-																						.addGroup(
-																								dayTabLayout
-																										.createSequentialGroup()
-																										.addPreferredGap(
-																												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																										.addComponent(
-																												dayjobName,
-																												javax.swing.GroupLayout.PREFERRED_SIZE,
-																												100,
-																												javax.swing.GroupLayout.PREFERRED_SIZE))))
-														.addComponent(
-																dayDeleteJob))
-										.addContainerGap(431, Short.MAX_VALUE)));
-	}
+	
 
 	/**
 	 * @param evt
@@ -1208,7 +723,7 @@ public class Config extends javax.swing.JFrame {
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
-			@Override
+			
 			public void run() {
 				new Config().setVisible(true);
 			}
@@ -1222,7 +737,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList sundayJobList;
 	private javax.swing.JTextField sundayJobName;
 	private javax.swing.JLabel sundayLabel;
-	private javax.swing.JPanel sundayTab;
+	private DayPanel sundayTab;
 
 	private javax.swing.JScrollPane mondayScrollPane;
 	private javax.swing.JButton mondayAddJob;
@@ -1231,7 +746,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList mondayJobList;
 	private javax.swing.JTextField mondayJobName;
 	private javax.swing.JLabel mondayLabel;
-	private javax.swing.JPanel mondayTab;
+	private DayPanel mondayTab;
 
 	private javax.swing.JScrollPane tuesdayScrollPane;
 	private javax.swing.JButton tuesdayAddJob;
@@ -1240,7 +755,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList tuesdayJobList;
 	private javax.swing.JTextField tuesdayJobName;
 	private javax.swing.JLabel tuesdayLabel;
-	private javax.swing.JPanel tuesdayTab;
+	private DayPanel tuesdayTab;
 
 	private javax.swing.JScrollPane wednesdayScrollPane;
 	private javax.swing.JButton wednesdayAddJob;
@@ -1249,7 +764,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList wednesdayJobList;
 	private javax.swing.JTextField wednesdayJobName;
 	private javax.swing.JLabel wednesdayLabel;
-	private javax.swing.JPanel wednesdayTab;
+	private DayPanel wednesdayTab;
 
 	private javax.swing.JScrollPane thursdayScrollPane;
 	private javax.swing.JButton thursdayAddJob;
@@ -1258,7 +773,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList thursdayJobList;
 	private javax.swing.JTextField thursdayJobName;
 	private javax.swing.JLabel thursdayLabel;
-	private javax.swing.JPanel thursdayTab;
+	private DayPanel thursdayTab;
 
 	private javax.swing.JScrollPane fridayScrollPane;
 	private javax.swing.JButton fridayAddJob;
@@ -1267,7 +782,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList fridayJobList;
 	private javax.swing.JTextField fridayJobName;
 	private javax.swing.JLabel fridayLabel;
-	private javax.swing.JPanel fridayTab;
+	private DayPanel fridayTab;
 
 	private javax.swing.JScrollPane saturdayScrollPane;
 	private javax.swing.JButton saturdayAddJob;
@@ -1276,7 +791,7 @@ public class Config extends javax.swing.JFrame {
 	private javax.swing.JList saturdayJobList;
 	private javax.swing.JTextField saturdayJobName;
 	private javax.swing.JLabel saturdayLabel;
-	private javax.swing.JPanel saturdayTab;
+	private DayPanel saturdayTab;
 
 	private javax.swing.JTabbedPane dayTabs;
 	private javax.swing.JCheckBox fridayCheck;
