@@ -21,7 +21,7 @@ public class Main {
 
 	private static ArrayList<Day> days;
 	private static ArrayList<Worker> workers;
-	private static File path = new File("schedule_data.ser");
+	public static File path = new File("schedule_data.ser");
 	
 	/**
 	 * Configures days.
@@ -162,12 +162,12 @@ public class Main {
 	 * Dumps data to the file schedule_data.ser.
 	 *
 	 */
-	public static void dumpConfigFile(){
+	public static void dumpConfigFile(File toWrite){
 		
 		try {
-			path.delete();
-			path.createNewFile();
-			FileOutputStream dumpConfig = new FileOutputStream(path);
+			toWrite.delete();
+			toWrite.createNewFile();
+			FileOutputStream dumpConfig = new FileOutputStream(toWrite);
 			ObjectOutputStream fileStore = new ObjectOutputStream(dumpConfig);
 			fileStore.writeObject(days);
 			fileStore.writeObject(workers);

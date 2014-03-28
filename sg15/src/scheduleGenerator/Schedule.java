@@ -175,7 +175,7 @@ public class Schedule extends Thread implements Serializable {
 			this.calculateNextMonth();
 		}
 
-		Main.dumpConfigFile();
+		Main.dumpConfigFile(Main.path);
 	}
 	
 	private TreeMap<String, Worker> noWorkersForJob(TreeMap<String, Worker> jobsWithWorker, String job, Day day) {

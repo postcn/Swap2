@@ -11,6 +11,7 @@ import java.util.NavigableSet;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.table.DefaultTableModel;
 
@@ -617,7 +618,18 @@ public class CalendarGUI extends javax.swing.JFrame {
 	 * @param evt
 	 */
 	private void saveChangesActionPerformed(java.awt.event.ActionEvent evt) {
-		Main.dumpConfigFile();
+		
+		JFileChooser fc = new JFileChooser();
+		fc.setCurrentDirectory(new java.io.File("."));
+		fc.setDialogTitle("Save Schedule Data File");
+		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		fc.setAcceptAllFileFilterUsed(false);
+		
+		fc.showOpenDialog(Main.cal);
+		
+		Main.path = fc.getSelectedFile();
+		
+		Main.dumpConfigFile(Main.path);
 	}
 
 	/*
