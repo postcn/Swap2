@@ -144,6 +144,7 @@ public class Schedule extends Thread implements Serializable {
 							// BAD SMELLS
 							// Data Clumps
 							// These seem to get modified together often, they could be made into their own object
+							// SWAP 2, TEAM 04. Not sure as to what changes we should make, as doing anything else would make it more complex
 							
 							jobsWithWorker.put(job, workerForJob);
 							workersWorking.add(workerForJob.getName());
@@ -175,7 +176,7 @@ public class Schedule extends Thread implements Serializable {
 			this.calculateNextMonth();
 		}
 
-		Main.dumpConfigFile();
+		Main.dumpConfigFile(Main.path);
 	}
 	
 	private TreeMap<String, Worker> noWorkersForJob(TreeMap<String, Worker> jobsWithWorker, String job, Day day) {
