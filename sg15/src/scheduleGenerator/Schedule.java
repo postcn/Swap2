@@ -49,7 +49,7 @@ public class Schedule extends Thread implements Serializable {
 		this.calculateNextMonth();
 	}
 
-	@Override
+	
 	public void run() {
 		this.calculateNextMonth();
 	}
