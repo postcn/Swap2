@@ -19,11 +19,6 @@ import javax.swing.*;
 // This class seems to have bulked up with a lot of features that should be delegated to different classes.
 // 
 
-//SWAP 2, TEAM 04
-//REFACTORING FOR ENHANCEMENT
-//Most of the functionality has been moved to WorkerTab for the display. These are JPanels for the tabbedPane display.
-//This will make it easier to change how things are displayed without changing this class.
-
 /**
  * 
  * @author schneimd
@@ -31,7 +26,7 @@ import javax.swing.*;
 public class WorkerSetup extends javax.swing.JFrame {
 
 	private ArrayList<Day> days;
-	private ArrayList<WorkerTab> workerTabs;
+	private ArrayList<JPanel> workerTabs;
 
 	/**
 	 * Allows for editing of already made workers.
@@ -82,7 +77,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 	 */
 	public WorkerSetup() {
 		this.setPreferredSize(new Dimension(425, 450));
-		this.workerTabs = new ArrayList<WorkerTab>();
+		this.workerTabs = new ArrayList<JPanel>();
 		initComponents();
 		addWorker();
 	}
@@ -97,11 +92,9 @@ public class WorkerSetup extends javax.swing.JFrame {
 	//REFACTORING FOR ENHANCEMENT FORM BAD SMELL
 	// No Feature Mentioned that could be added. It is difficult to mention features when extracting code from a class.
 	//I think the refactoring was quite successful. The functions are now much easier to read and contain a good focus.
-	//Many of these functions were moved to WorkerTab in response to the divergent change response.
 	private void addWorker() {
-		WorkerTab tab = new WorkerTab();
-		this.workerTabs.add(tab);
-		this.workerTabPanel.addTab(this.workerTabs.size()==0 ? "Worker 1":"Worker " + String.valueOf(this.workerTabs.size()), null, tab, "");
+		this.workerTabs.add(new WorkerTab());
+		this.workerTabPanel.addTab(this.workerTabs.size()==0 ? "Worker 1":"Worker " + String.valueOf(this.workerTabs.size()), null, tempWorkerTab, "");
 	}
 	
 	

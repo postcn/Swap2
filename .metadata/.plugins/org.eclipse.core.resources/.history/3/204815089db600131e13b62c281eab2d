@@ -22,7 +22,6 @@ import javax.swing.*;
 //SWAP 2, TEAM 04
 //REFACTORING FOR ENHANCEMENT
 //Most of the functionality has been moved to WorkerTab for the display. These are JPanels for the tabbedPane display.
-//This will make it easier to change how things are displayed without changing this class.
 
 /**
  * 

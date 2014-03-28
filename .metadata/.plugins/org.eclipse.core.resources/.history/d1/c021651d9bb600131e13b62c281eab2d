@@ -1,0 +1,11 @@
+package scheduleGenerator;
+
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+public class WorkerTab extends JPanel {
+	JTabbedPane workerDays;
+	public WorkerTab() {
+		
+	}
+}

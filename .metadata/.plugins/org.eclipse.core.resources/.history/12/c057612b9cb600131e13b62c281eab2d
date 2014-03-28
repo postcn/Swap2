@@ -19,11 +19,6 @@ import javax.swing.*;
 // This class seems to have bulked up with a lot of features that should be delegated to different classes.
 // 
 
-//SWAP 2, TEAM 04
-//REFACTORING FOR ENHANCEMENT
-//Most of the functionality has been moved to WorkerTab for the display. These are JPanels for the tabbedPane display.
-//This will make it easier to change how things are displayed without changing this class.
-
 /**
  * 
  * @author schneimd
@@ -97,7 +92,6 @@ public class WorkerSetup extends javax.swing.JFrame {
 	//REFACTORING FOR ENHANCEMENT FORM BAD SMELL
 	// No Feature Mentioned that could be added. It is difficult to mention features when extracting code from a class.
 	//I think the refactoring was quite successful. The functions are now much easier to read and contain a good focus.
-	//Many of these functions were moved to WorkerTab in response to the divergent change response.
 	private void addWorker() {
 		WorkerTab tab = new WorkerTab();
 		this.workerTabs.add(tab);

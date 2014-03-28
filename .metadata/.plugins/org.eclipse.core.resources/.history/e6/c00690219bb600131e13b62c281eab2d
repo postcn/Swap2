@@ -1,0 +1,18 @@
+package scheduleGenerator;
+
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+public class WorkerTab extends JPanel {
+	JTabbedPane workerDays;
+	public WorkerTab() {
+		ArrayList<Day> days = Main.getDays();
+		javax.swing.JTabbedPane tempWorkerDays = new javax.swing.JTabbedPane();
+
+		// Makes a tab for each day and a check box for each job.
+		for (Day day : this.days) {
+			setupDay(day, tempWorkerDays);
+
+		}
+	}
+}
