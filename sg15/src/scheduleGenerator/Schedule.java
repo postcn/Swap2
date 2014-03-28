@@ -144,6 +144,7 @@ public class Schedule extends Thread implements Serializable {
 							// BAD SMELLS
 							// Data Clumps
 							// These seem to get modified together often, they could be made into their own object
+							// SWAP 2, TEAM 04. Not sure as to what changes we should make, as doing anything else would make it more complex
 							
 							jobsWithWorker.put(job, workerForJob);
 							workersWorking.add(workerForJob.getName());
