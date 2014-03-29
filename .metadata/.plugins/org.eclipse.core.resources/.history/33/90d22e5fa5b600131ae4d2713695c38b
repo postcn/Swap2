@@ -198,11 +198,8 @@ public class Schedule extends Thread implements Serializable {
 				.get(new Random().nextInt(workersForJob
 						.size()));
 		for (Worker w : workersForJob) {
-//			if (w.numWorkedForJob(job) < workerForJob
-//					.numWorkedForJob(job)) {
-//				workerForJob = w;
-//			}
-			if (w.getTotalWorkedCount() < workerForJob.getTotalWorkedCount()) {
+			if (w.numWorkedForJob(job) < workerForJob
+					.numWorkedForJob(job)) {
 				workerForJob = w;
 			}
 		}
@@ -212,6 +209,8 @@ public class Schedule extends Thread implements Serializable {
 	}
 
 	private ArrayList<Worker> findWorkersForJob(Worker worker, Day day, String job, ArrayList<String> workersWorking, ArrayList<Worker> workersForJob) {
+		Day workerDay = worker.getDayWithName(day
+				.getNameOfDay());
 		// SWAP 1, TEAM 03
 		//Removed some logic to implement the bonus feature so that it adds all works to the job so it can select the one that has worked last.
 		if (!workersWorking.contains(worker

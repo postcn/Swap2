@@ -1,16 +1,8 @@
 package scheduleGenerator;
 
-import java.awt.Component;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.swing.JCheckBox;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.JViewport;
 
 //SWAP 1, TEAM 03
 
@@ -22,8 +14,7 @@ import javax.swing.JViewport;
 //I disagree with this just being a data class. We can see that it stores the information on a worker working and days that it worked,
 //But it also contains methods for accessing and manipulating this data.
 
-//However, we pull functionality from Schedule to make this less of a data class as possible
-//Pulled getting the worker tabs for worker setup here. Makes more sense to prep the panel where the data is.
+//However, we pull functionality from Schedule to make this less of a data class.
 /**
  * A worker contains days available to work with jobs.
  *
@@ -84,10 +75,8 @@ public class Worker implements Serializable{
 	 * Returns the number of times a job has been worked.
 	 *
 	 * @param jobName
-	 * @return number of times job has been worked.
+	 * @return number of tims job has been worked.
 	 */
-	//Function no longer called in code. Left because it used to be used and could be used
-	//to implement additional features. Felt no need to remove it right now.
 	public int numWorkedForJob(String jobName) {
 		return this.timesWorked.get(jobName);
 	}
@@ -140,35 +129,6 @@ public class Worker implements Serializable{
 	 */
 	public void addDay(Day d) {
 		this.days.add(d);
-	}
-	
-	public WorkerTab getWorkerTab() {
-		WorkerTab t = new WorkerTab();
-		JTextField nameArea = (JTextField) t.getComponent(2);
-		nameArea.setText(this.getName());
-		JTabbedPane daysPane = (JTabbedPane) t.getComponents()[0];
-		for (int i = 0; i < daysPane.getTabCount(); i++) {
-			for (int n = 0; n < this.getDays().size(); n++) {
-				if (daysPane.getTitleAt(i).equals(
-						this.getDays().get(n).getNameOfDay())) {
-
-					JPanel day = (JPanel) daysPane.getComponent(i);
-					JScrollPane pane = (JScrollPane) day.getComponent(0);
-					JViewport view = (JViewport) pane.getComponent(0);
-					JPanel p = (JPanel) view.getComponent(0);
-
-					for (Component job : p.getComponents()) {
-						for (String workerJob : this.getDays().get(n)
-								.getJobs()) {
-							if (((JCheckBox) job).getText().equals(workerJob)) {
-								((JCheckBox) job).setSelected(true);
-							}
-						}
-					}
-				}
-			}
-		}
-		return t;
 	}
 	
 }

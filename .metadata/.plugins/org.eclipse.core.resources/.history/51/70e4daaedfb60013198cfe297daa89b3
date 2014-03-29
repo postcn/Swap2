@@ -23,7 +23,6 @@ import javax.swing.JViewport;
 //But it also contains methods for accessing and manipulating this data.
 
 //However, we pull functionality from Schedule to make this less of a data class as possible
-//Pulled getting the worker tabs for worker setup here. Makes more sense to prep the panel where the data is.
 /**
  * A worker contains days available to work with jobs.
  *

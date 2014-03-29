@@ -55,7 +55,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 		this.setPreferredSize(new Dimension(425, 450));
 		this.workerTabs = new ArrayList<WorkerTab>();
 		initComponents();
-		addWorker(new Worker("",new ArrayList<Day>()));
+		addWorker(new Worker("",new ArrayList<Day>()>));
 	}
 	
 	// SWAP 1, TEAM 03
@@ -260,7 +260,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 	 * @param evt
 	 */
 	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		this.addWorker(new Worker("", new ArrayList<Day>()));
+		this.addWorker();
 	}
 
 	/**

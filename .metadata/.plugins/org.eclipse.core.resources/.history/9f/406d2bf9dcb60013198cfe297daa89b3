@@ -43,7 +43,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 		this.workerTabs = new ArrayList<WorkerTab>();
 		initComponents();
 		for (int c = 0; c < workers.size(); c++) {
-			this.addWorker(workers.get(c));
+			this.addWorker(workers.get(i));
 		}
 
 	}
@@ -55,7 +55,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 		this.setPreferredSize(new Dimension(425, 450));
 		this.workerTabs = new ArrayList<WorkerTab>();
 		initComponents();
-		addWorker(new Worker("",new ArrayList<Day>()));
+		addWorker();
 	}
 	
 	// SWAP 1, TEAM 03
@@ -69,8 +69,8 @@ public class WorkerSetup extends javax.swing.JFrame {
 	// No Feature Mentioned that could be added. It is difficult to mention features when extracting code from a class.
 	//I think the refactoring was quite successful. The functions are now much easier to read and contain a good focus.
 	//Many of these functions were moved to WorkerTab in response to the divergent change response.
-	private void addWorker(Worker w) {
-		WorkerTab tab = w.getWorkerTab();
+	private void addWorker() {
+		WorkerTab tab = new WorkerTab();
 		this.workerTabs.add(tab);
 		this.workerTabPanel.addTab(this.workerTabs.size()==0 ? "Worker 1":"Worker " + String.valueOf(this.workerTabs.size()), null, tab, "");
 	}
@@ -260,7 +260,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 	 * @param evt
 	 */
 	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		this.addWorker(new Worker("", new ArrayList<Day>()));
+		this.addWorker();
 	}
 
 	/**

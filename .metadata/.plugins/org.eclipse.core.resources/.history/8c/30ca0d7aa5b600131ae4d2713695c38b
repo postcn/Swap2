@@ -198,11 +198,8 @@ public class Schedule extends Thread implements Serializable {
 				.get(new Random().nextInt(workersForJob
 						.size()));
 		for (Worker w : workersForJob) {
-//			if (w.numWorkedForJob(job) < workerForJob
-//					.numWorkedForJob(job)) {
-//				workerForJob = w;
-//			}
-			if (w.getTotalWorkedCount() < workerForJob.getTotalWorkedCount()) {
+			if (w.numWorkedForJob(job) < workerForJob
+					.numWorkedForJob(job)) {
 				workerForJob = w;
 			}
 		}

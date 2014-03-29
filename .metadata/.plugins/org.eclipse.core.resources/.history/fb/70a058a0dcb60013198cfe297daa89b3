@@ -23,7 +23,6 @@ import javax.swing.JViewport;
 //But it also contains methods for accessing and manipulating this data.
 
 //However, we pull functionality from Schedule to make this less of a data class as possible
-//Pulled getting the worker tabs for worker setup here. Makes more sense to prep the panel where the data is.
 /**
  * A worker contains days available to work with jobs.
  *
@@ -148,9 +147,9 @@ public class Worker implements Serializable{
 		nameArea.setText(this.getName());
 		JTabbedPane daysPane = (JTabbedPane) t.getComponents()[0];
 		for (int i = 0; i < daysPane.getTabCount(); i++) {
-			for (int n = 0; n < this.getDays().size(); n++) {
+			for (int n = 0; n < workers.get(c).getDays().size(); n++) {
 				if (daysPane.getTitleAt(i).equals(
-						this.getDays().get(n).getNameOfDay())) {
+						workers.get(c).getDays().get(n).getNameOfDay())) {
 
 					JPanel day = (JPanel) daysPane.getComponent(i);
 					JScrollPane pane = (JScrollPane) day.getComponent(0);
@@ -158,7 +157,7 @@ public class Worker implements Serializable{
 					JPanel p = (JPanel) view.getComponent(0);
 
 					for (Component job : p.getComponents()) {
-						for (String workerJob : this.getDays().get(n)
+						for (String workerJob : workers.get(c).getDays().get(n)
 								.getJobs()) {
 							if (((JCheckBox) job).getText().equals(workerJob)) {
 								((JCheckBox) job).setSelected(true);
@@ -168,7 +167,7 @@ public class Worker implements Serializable{
 				}
 			}
 		}
-		return t;
+	}
 	}
 	
 }

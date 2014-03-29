@@ -260,7 +260,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 	 * @param evt
 	 */
 	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		this.addWorker(new Worker("", new ArrayList<Day>()));
+		this.addWorker();
 	}
 
 	/**
