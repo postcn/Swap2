@@ -63,6 +63,10 @@ public class Config extends javax.swing.JFrame {
 	@SuppressWarnings("unchecked")
 	public Config(ArrayList<Day> days) {
 		this.models = new DefaultListModel[7];
+		for(int x = 0; x < 7; x ++)
+		{
+		this.models[x] = new DefaultListModel<String>();
+		}
 		initDyn();
 		initComponents();
 
@@ -76,7 +80,7 @@ public class Config extends javax.swing.JFrame {
 		// This overcame the duplicated code Bad code smell
 		for (Day day : days) {
 			int dayIndex =  day.getIndexOfDay();
-			this.models[dayIndex] = new DefaultListModel<String>();
+			
 			performClickForDay(dayIndex);
 			ArrayList<String> jobs = day.getJobs();
 			
@@ -124,6 +128,10 @@ public class Config extends javax.swing.JFrame {
 	 */
 	public Config() {
 		this.models = new DefaultListModel[7];
+		for(int x = 0; x < 7; x ++)
+		{
+		this.models[x] = new DefaultListModel<String>();
+		}
 		initDyn();
 
 		initComponents();
