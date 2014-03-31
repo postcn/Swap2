@@ -74,8 +74,10 @@ public class Config extends javax.swing.JFrame {
 		// same stuff except for the do click
 		// which i moved to a new method called performClickForDay()
 		// This overcame the duplicated code Bad code smell
+		
 		for (Day day : days) {
-			int dayIndex =  day.getIndexOfDay();
+			int dayIndex =  // Sunday is
+																	// set to 0
 			performClickForDay(dayIndex);
 			ArrayList<String> jobs = day.getJobs();
 			for (String job : jobs) {

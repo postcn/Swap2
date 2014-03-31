@@ -40,9 +40,7 @@ import javax.swing.JTextField;
  * then just created a new day tab and then all the code will be in the same spot
  * 
  * SWAP 2, TEAM: 04
- * REFACTORING FOR ENHANCEMENT
- * Created a DayPanel class which allows for the code to be placed inside and easily changed.
- * This handles both smells listed above since it pulls the code for the tabs into its own class.
+ * Created a DayPanel class which allows fo the code to be placed inside and easily changed.
  */
 /**
  * 
@@ -74,8 +72,12 @@ public class Config extends javax.swing.JFrame {
 		// same stuff except for the do click
 		// which i moved to a new method called performClickForDay()
 		// This overcame the duplicated code Bad code smell
+		DateFormatSymbols objDaySymbol = new DateFormatSymbols();
+		String[] symbolDayNames = objDaySymbol.getWeekdays();
+		List<String> dayList = Arrays.asList(symbolDayNames);
 		for (Day day : days) {
-			int dayIndex =  day.getIndexOfDay();
+			int dayIndex = dayList.indexOf(day.getNameOfDay()) - 1; // Sunday is
+																	// set to 0
 			performClickForDay(dayIndex);
 			ArrayList<String> jobs = day.getJobs();
 			for (String job : jobs) {

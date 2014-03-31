@@ -35,7 +35,7 @@ public class Schedule extends Thread implements Serializable {
 		this.workers = wrks;
 		this.days = daySlots;
 		this.workerIndices = new HashMap<Integer, ArrayList<Worker>>();
-		for (int i = 0; i <= 6; i++) {
+		for (int i = 1; i <= 7; i++) {
 			this.workerIndices.put(i, new ArrayList<Worker>());
 		}
 		this.generateIndices();
@@ -257,8 +257,8 @@ public class Schedule extends Thread implements Serializable {
 //		// Switch Statements
 //		// Using a built in method or polymorphism would fix this.
 		// SWAP 2, TEAM 04
-		// REFACTORING FOR ENHANCEMENT FROM BAD SMELL
-		// Code moved into own class, day, and uses built in method.
+		// REFACTORING FOR ENHANCEMENT
+		// Code moved into own class, day, and uses built in mehotd.
 //		
 //		int dayNum = 0;
 //		if (nameOfDay.equals("Sunday")) {

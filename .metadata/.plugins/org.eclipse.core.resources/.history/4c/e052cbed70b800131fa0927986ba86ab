@@ -618,7 +618,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 	 */
 	private void saveChangesActionPerformed(java.awt.event.ActionEvent evt) {
 		
-		//SWAP 2, TEAM 04 ELABORATION OF FEATURE
+		//SWAP 2, TEAM 04
 		/*
 		 * This is the elaboration of team one's feature. We could not use the two step process here because java has already done this for us.
 		 * We implemented the option to choose which file to save to in addition to their open from file. This cannot be refactored before it

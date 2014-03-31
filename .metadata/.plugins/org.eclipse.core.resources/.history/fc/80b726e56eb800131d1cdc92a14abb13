@@ -35,7 +35,7 @@ public class Schedule extends Thread implements Serializable {
 		this.workers = wrks;
 		this.days = daySlots;
 		this.workerIndices = new HashMap<Integer, ArrayList<Worker>>();
-		for (int i = 0; i <= 6; i++) {
+		for (int i = 1; i <= 7; i++) {
 			this.workerIndices.put(i, new ArrayList<Worker>());
 		}
 		this.generateIndices();
@@ -66,7 +66,7 @@ public class Schedule extends Thread implements Serializable {
 	private void generateIndices() {
 		for (int i = 0; i < this.workers.size(); i++) {
 			for (Day day : this.workers.get(i).getDays()) {
-				int numDay = day.getIndexOfDay();
+				int numDay = this.numForName(day.getNameOfDay());
 				this.workerIndices.get(numDay).add(this.workers.get(i));
 			}
 		}
@@ -101,7 +101,7 @@ public class Schedule extends Thread implements Serializable {
 
 			for (Day day : this.days) {
 
-				if (this.cal.get(Calendar.DAY_OF_WEEK) == day.getIndexOfDay() + 1) {
+				if (this.cal.get(Calendar.DAY_OF_WEEK) == day.getIndexOfDay() + 1)) {
 
 					TreeMap<String, Worker> jobsWithWorker = new TreeMap<String, Worker>();
 					ArrayList<String> workersWorking = new ArrayList<String>();
@@ -117,7 +117,8 @@ public class Schedule extends Thread implements Serializable {
 
 						ArrayList<Worker> workersForJob = new ArrayList<Worker>();
 
-						for (Worker worker : this.workerIndices.get(day.getIndexOfDay())) {
+						for (Worker worker : this.workerIndices.get(this
+								.numForName(day.getNameOfDay()))) {
 							
 							// SWAP 1, TEAM 03
 							
@@ -249,35 +250,32 @@ public class Schedule extends Thread implements Serializable {
 		
 	}
 
-//	private int numForName(String nameOfDay) {
-//		
-//		// SWAP 1, TEAM 03
-//		
-//		// BAD SMELLS
-//		// Switch Statements
-//		// Using a built in method or polymorphism would fix this.
-		// SWAP 2, TEAM 04
-		// REFACTORING FOR ENHANCEMENT FROM BAD SMELL
-		// Code moved into own class, day, and uses built in method.
-//		
-//		int dayNum = 0;
-//		if (nameOfDay.equals("Sunday")) {
-//			dayNum = 1;
-//		} else if (nameOfDay.equals("Monday")) {
-//			dayNum = 2;
-//		} else if (nameOfDay.equals("Tuesday")) {
-//			dayNum = 3;
-//		} else if (nameOfDay.equals("Wednesday")) {
-//			dayNum = 4;
-//		} else if (nameOfDay.equals("Thursday")) {
-//			dayNum = 5;
-//		} else if (nameOfDay.equals("Friday")) {
-//			dayNum = 6;
-//		} else if (nameOfDay.equals("Saturday")) {
-//			dayNum = 7;
-//		}
-//		return dayNum;
-//	}
+	private int numForName(String nameOfDay) {
+		
+		// SWAP 1, TEAM 03
+		
+		// BAD SMELLS
+		// Switch Statements
+		// Using a built in method or polymorphism would fix this.
+		
+		int dayNum = 0;
+		if (nameOfDay.equals("Sunday")) {
+			dayNum = 1;
+		} else if (nameOfDay.equals("Monday")) {
+			dayNum = 2;
+		} else if (nameOfDay.equals("Tuesday")) {
+			dayNum = 3;
+		} else if (nameOfDay.equals("Wednesday")) {
+			dayNum = 4;
+		} else if (nameOfDay.equals("Thursday")) {
+			dayNum = 5;
+		} else if (nameOfDay.equals("Friday")) {
+			dayNum = 6;
+		} else if (nameOfDay.equals("Saturday")) {
+			dayNum = 7;
+		}
+		return dayNum;
+	}
 
 	// /**
 	// * Returns the month/day/year of next date with the name of day.
