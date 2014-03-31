@@ -54,7 +54,7 @@ public class DayPanel extends JPanel {
 									.addElement(DayPanel.this.dayJobName
 											.getText());
 							DayPanel.this.dayJobList
-									.setModel(DayPanel.this.models[0]);
+									.setModel(DayPanel.this.models[x]);
 							DayPanel.this.dayJobName.setText("");
 						}
 					}

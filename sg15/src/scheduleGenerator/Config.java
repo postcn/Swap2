@@ -76,11 +76,12 @@ public class Config extends javax.swing.JFrame {
 		// This overcame the duplicated code Bad code smell
 		for (Day day : days) {
 			int dayIndex =  day.getIndexOfDay();
+			this.models[dayIndex] = new DefaultListModel<String>();
 			performClickForDay(dayIndex);
 			ArrayList<String> jobs = day.getJobs();
+			
 			for (String job : jobs) {
 				this.models[dayIndex].addElement(job);
-				this.sundayJobList.setModel(this.models[dayIndex]);
 			}
 		}
 	}
@@ -466,7 +467,7 @@ public class Config extends javax.swing.JFrame {
 			// Moved the duplicate code into a method for setting the Horizontal
 			// and vertical tab groups
 			// This overcame the duplicated code Bad code smell
-
+			this.sundayJobList.setModel(this.models[0]);
 			sundayTab.DayPanelSet(models, this, sundayJobList, sundayJobName, sundayLabel, sundayAddJob, sundayDeleteJob, sundayScrollPane);
 			sundayTab.setUp(0);
 			this.dayTabs.addTab("Sunday", this.sundayTab);
@@ -487,6 +488,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
+			this.mondayJobList.setModel(this.models[1]);
 			mondayTab.DayPanelSet(models, this, mondayJobList, mondayJobName, mondayLabel, mondayAddJob, mondayDeleteJob, mondayScrollPane);
 			mondayTab.setUp(1);
 			this.dayTabs.addTab("Monday", this.mondayTab);
@@ -508,7 +510,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			
+			this.tuesdayJobList.setModel(this.models[2]);
 			tuesdayTab.DayPanelSet(models, this, tuesdayJobList, tuesdayJobName, tuesdayLabel, tuesdayAddJob, tuesdayDeleteJob, tuesdayScrollPane);
 			tuesdayTab.setUp(2);
 			this.dayTabs.addTab("Tuesday", this.tuesdayTab);
@@ -529,6 +531,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
+			this.wednesdayJobList.setModel(this.models[3]);
 			wednesdayTab.DayPanelSet(models, this, wednesdayJobList, wednesdayJobName, wednesdayLabel, wednesdayAddJob, wednesdayDeleteJob, wednesdayScrollPane);
 			wednesdayTab.setUp(3);
 
@@ -551,7 +554,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			
+			this.thursdayJobList.setModel(this.models[4]);
 			thursdayTab.DayPanelSet(models, this, thursdayJobList, thursdayJobName, thursdayLabel, thursdayAddJob, thursdayDeleteJob, thursdayScrollPane);
 			thursdayTab.setUp(4);
 
@@ -575,6 +578,7 @@ public class Config extends javax.swing.JFrame {
 				stretch();
 			}
 			
+			this.fridayJobList.setModel(this.models[5]);
 			fridayTab.DayPanelSet(models, this, fridayJobList, fridayJobName, fridayLabel, fridayAddJob, fridayDeleteJob, fridayScrollPane);
 			fridayTab.setUp(5);
 			this.dayTabs.addTab("Friday", this.fridayTab);
@@ -596,6 +600,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
+			this.saturdayJobList.setModel(this.models[6]);
 			saturdayTab.DayPanelSet(models, this, saturdayJobList, saturdayJobName, saturdayLabel, saturdayAddJob, saturdayDeleteJob, saturdayScrollPane);
 			saturdayTab.setUp(6);
 
