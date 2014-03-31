@@ -410,6 +410,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 		this.undoChanges.addActionListener(new java.awt.event.ActionListener() {
 			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				undoChangesActionPerformed(evt);
 			}
 		});
 		//this.fileMenu.add(this.undoChanges);

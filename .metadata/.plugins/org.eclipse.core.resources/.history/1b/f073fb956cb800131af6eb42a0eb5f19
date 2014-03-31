@@ -410,6 +410,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 		this.undoChanges.addActionListener(new java.awt.event.ActionListener() {
 			
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				undoChangesActionPerformed(evt);
 			}
 		});
 		//this.fileMenu.add(this.undoChanges);
@@ -640,11 +641,12 @@ public class CalendarGUI extends javax.swing.JFrame {
 	 * 
 	 * Remove this method or implement it and use it in the program
 	 */
-	/*
-	 * SWAP 2, TEAM 04
-	 * REFACTORING FOR ENHANCEMENT FROM BAD SMELL.
-	 * Method eliminated.
+	/**
+	 * @param evt
 	 */
+	private void undoChangesActionPerformed(java.awt.event.ActionEvent evt) {
+		// removed
+	}
 	
 	private void editCell(Worker input)
 	{
